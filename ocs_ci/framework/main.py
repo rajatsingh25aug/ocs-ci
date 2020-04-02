@@ -103,4 +103,8 @@ def main(argv=None):
         '--logger-logsdir', pytest_logs_dir,
         '--rp-launch', launch_name,
     ])
+    if '--reportportal' not in arguments:
+        arguments.extend([
+            '--reportportal'
+        ])
     return pytest.main(arguments)
