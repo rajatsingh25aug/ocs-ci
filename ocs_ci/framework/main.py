@@ -95,7 +95,7 @@ def main(argv=None):
     init_ocsci_conf(arguments)
     pytest_logs_dir = utils.ocsci_log_path()
     utils.create_directory_path(framework.config.RUN['log_dir'])
-    launch_name = f"Tier run from {getuser()} RunId: {framework.config.RUN['run_id']}"
+    launch_name = utils.get_testrun_name() + getuser()
     arguments.extend([
         '-p', 'ocs_ci.framework.pytest_customization.ocscilib',
         '-p', 'ocs_ci.framework.pytest_customization.marks',
