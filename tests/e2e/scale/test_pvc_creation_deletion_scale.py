@@ -81,6 +81,14 @@ class TestPVCCreationDeletionScale(E2ETest):
             process.join()
 
         # Get pvc_name, require pvc_name to fetch creation time data from log
+        threads = list()
+        for pvc_obj in pvc_objs:
+            process = threading.Thread(target=pvc_obj.reload)
+            process.start()
+            threads.append(process)
+        for process in threads:
+            process.join()
+
         pvc_name_list, pv_name_list = ([] for i in range(2))
         threads = list()
         for pvc_obj in pvc_objs:
